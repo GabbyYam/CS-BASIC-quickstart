@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/CS-Basic-QuickStart/favicon.png" />
+    
+
+    <title>
+        
+          01-Overview - CS-QuickStart
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/CS-Basic-QuickStart/css/book.css">
+
+    
+<script src="/CS-Basic-QuickStart/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/CS-Basic-QuickStart/">
+    <img src="/CS-Basic-QuickStart/favicon.png">
+    <span>CS-QUICKSTART</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/CS-Basic-QuickStart/">Home</a></li>
+</ul>
+<h1 id="CS-Basic">CS-Basic</h1>
+<h2 id="Computer-Network">Computer Network</h2>
+<ul>
+<li><a href="/CS-Basic-QuickStart/01-Overview/">Overview</a></li>
+</ul>
+
+</div>
+
+
+<script src="/CS-Basic-QuickStart/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="网络的组成">网络的组成</h1>
+<p>首先这里我们对网络进行一个逻辑上的定义，即在逻辑上的分为<strong>边缘</strong>，<strong>核心</strong>，<strong>接入网络</strong>三部分</p>
+<p>下面几张图可以帮我们很好地理解这个问题</p>
+<h2 id="网络边缘-Network-Edge">网络边缘 Network Edge</h2>
+<p>网络边缘即位于网络终端的节点，类似与数据结构：图中的叶子节点<img src="image-20200319175356908.png" alt="image-20200319175356908"></p>
+<h2 id="接入网络-Access-Network">接入网络 Access Network</h2>
+<p>接入网络既是将边缘接入Core的部分（图中箭头所指的部分），如果说Edge是n层，那么AN就是第n-1层</p>
+<p><img src="image-20200319175931987.png" alt="image-20200319175931987"></p>
+<h2 id="网络核心-Network-Core">网络核心 Network Core</h2>
+<p>除去以上两部分，剩下的就是网络核心，网络核心主要当各级ISP提供（互联网服务提供商：诸如移动，电信等）</p>
+<br>
+<h1 id="网络基本交换类型-（Switch-Type）">网络基本交换类型 （Switch Type）</h1>
+<h3 id="电路交换-（主要是电话网络）">电路交换 （主要是电话网络）</h3>
+<ul>
+<li>资源专用：闲时资源资源浪费
+<ul>
+<li>FDM 频分复用</li>
+<li>TDM 时分复用</li>
+</ul>
+</li>
+<li>需要建立和拆除资源</li>
+<li>服务质量有保证：因为是专用网络，不存在竞争和时延问题</li>
+</ul>
+<h2 id="分组交换-Packet-Switched-Network">分组交换(Packet-Switched Network)</h2>
+<ul>
+<li>资源共享：统计复用 - 总的来说就是所有资源都将用于传输，但是存在某种并发竞争</li>
+<li>资源转发：多层转发</li>
+<li>资源竞争：允许超过链路容量 即维护阻塞队列的方式</li>
+<li>服务质量无保证：无序，延时，包丢失</li>
+</ul>
+<h1 id="层次化结构-简化与解耦-⭐️">层次化结构 - 简化与解耦 ⭐️</h1>
+<h2 id="为什么要分层实现？">为什么要分层实现？</h2>
+<p>考虑这样一个场景：实现一个通讯系统让 Yam 和 Cherno 网上聊天，需要满足以下三部分功能：</p>
+<ul>
+<li>输入和读取信息 （这是必须的）</li>
+<li>信息加密 （因为要讲悄悄话）</li>
+<li>信息传输 （也是基本的嘛）</li>
+</ul>
+<p>如果以一个整体的角度去设计，我们需要面对这些问题：</p>
+<ul>
+<li>开发团队必须对整个系统负责，而不是相互独立地开发（虽然这里是个比较简单的系统，当然只是举例）</li>
+<li>如果我们要修改某项功能，我们很可能得暂停整个系统得服务</li>
+</ul>
+<p>而在软件领域，有许多分层的思想去做这件事（诸如各种OOP语言和中间件框架 ），即所谓高内聚低耦合<br>
+（ps：也是软件行业的一种趋势 比如 ：微服务 前后端分离）</p>
+<p>显然这样一来我们就没有理由不去分层实现，因为<strong>复杂的系统</strong>做分层会有以下好处：</p>
+<ul>
+<li><strong>相互独立 &amp; 封装：每层只需要提供一些供其他层调用的接口，各层之间无法在功能上相互干预</strong></li>
+<li><strong>系统解耦：便于维护（Debug），实现，以及扩展</strong></li>
+<li><strong>功能复用，功能之间相互调用而不需要重复实现</strong></li>
+</ul>
+<p>（ps：强调复杂的系统是因为如果只是简单的系统，相互调用会产生一些冗余开销，而这本来是不必要的）</p>
+<h2 id="主流分层模型">主流分层模型</h2>
+<h3 id="OSI模型">OSI模型<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></h3>
+<p>这是一个70年代晚期的经典七层模型，但由于商业上并没有达到一定的成功，因此现在仅作为一个参考模型存在，当然作为系统设计的学习材料也具有相当大的意义，分层如图所示</p>
+<p><img src="https://miro.medium.com/max/4000/1*-hQHFX-UjlruHDf9Je0lXg.png" alt="img"></p>
+<p>由上往下依次是：</p>
+<ul>
+<li>
+<p>应用层（Application Layer）提供为应用软件而设的接口，以设置与另一应用软件之间的通信。</p>
+</li>
+<li>
+<p>表达层（Presentation Layer）把数据转换为能与接收者的系统格式兼容并适合传输的格式。</p>
+</li>
+<li>
+<p>会话层（Session Layer）负责在数据传输中设置和维护计算机网络中两台计算机之间的通信连接。</p>
+</li>
+<li>
+<p>传输层（Transport Layer）把传输表头（TH）加至数据以形成数据包。传输表头包含了所使用的协议等发送信息。例如:传输控制协议（TCP）等。</p>
+</li>
+<li>
+<p>网络层（Network Layer）决定数据的路径选择和转寄，将网络表头（NH）加至数据包，以形成报文。网络表头包含了网络数据。例如:互联网协议（IP）等。</p>
+</li>
+<li>
+<p>数据链路层（Data Link Layer）负责网络寻址、错误侦测和改错。当表头和表尾被加至数据包时，会形成<a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E8%A8%8A%E6%A1%86" target="_blank" rel="noopener">信息框</a>（Data Frame）。数据链表头（DLH）是包含了物理地址和错误侦测及改错的方法。数据链表尾（DLT）是一串指示数据包末端的字符串。例如以太网、无线局域网（Wi-Fi）和通用分组无线服务（GPRS）等。分为两个子层：逻辑链路控制（logical link control，LLC）子层和介质访问控制（Media access control，MAC）子层。</p>
+</li>
+<li>
+<p>物理层（Physical Layer）在局部局域网上传送<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E5%B8%A7" target="_blank" rel="noopener">数据帧</a>（Data Frame），它负责管理电脑通信设备和网络媒体之间的互通。包括了针脚、电压、线缆规范、集线器、中继器、网卡、主机接口卡等。</p>
+</li>
+</ul>
+<h3 id="TCP-IP模型">TCP/IP模型</h3>
+<p>五层模型，也是这个repo所采用的模型，同时也是当前主流应用模型</p>
+<h3 id="沙漏状的协议栈-软硬件分离">沙漏状的协议栈 - 软硬件分离</h3>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="%5Bhttps://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B%5D(https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B)">OSI模型的标准定义</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/CS-Basic-QuickStart/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>GabbyYam</div>
+      <div>2020-03-19</div>
+    </div>
+  </div>
+
+  
+    <div class="divider"></div>
+
+    <div class="link">
+      <a class="category-link" href="/CS-Basic-QuickStart/categories/Computer-Network/">Computer Network</a>
+
+      
+    </div>
+    
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/CS-Basic-QuickStart/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/CS-Basic-QuickStart/js/book.js"></script>
